@@ -12,7 +12,6 @@ document.onmouseup = function(e) {
         // navigator.clipboard.writeText(db[content]) // past the db correspondance in the clipboard **https only**
 
         // window.prompt(db[content], db[content]) // open conversion window ctrl c enter
-        
     }
 }
 
@@ -21,4 +20,4 @@ document.addEventListener('copy', function(e) {
     if(!db[window.getSelection().toString()]) return
     e.clipboardData.setData('text/plain', db[window.getSelection().toString()]);
     e.preventDefault();
-  });
+});
