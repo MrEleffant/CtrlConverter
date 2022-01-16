@@ -1,7 +1,7 @@
 {
     "name": "CtrlConverter",
-    "description": "This is a Chrome extension !",
-    "version": "1.0",
+    "description": "This is a Chrome extension that replace your copypaste from db",
+    "version": "2.0.1",
     "manifest_version": 3,
     "background": {
         "service_worker": "index.js"
