@@ -26,9 +26,7 @@ document.addEventListener("copy", function(e) {
 
 let selected = null, current = null, i = 0, j =0, auto = false
 document.addEventListener("keypress", function(e) {
-    if(e.keyCode == 178) {
-        auto = !auto
-    }
+    if(e.keyCode == 178) auto = !auto
     if(!auto) return
     switch (e.keyCode) {
         case 38: // key "&" for selection
@@ -41,7 +39,7 @@ document.addEventListener("keypress", function(e) {
             current = selected[i].split("")
             break;
 
-        case 60, 32: // key ">" for change or space 
+        case 60: case 32: // key ">" or space for change
             if(selected == null || current == null ) break
             if(i == (selected.lenght-1) && j == (current.lenght - 1)) {
                 selected = null 
