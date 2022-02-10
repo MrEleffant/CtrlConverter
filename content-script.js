@@ -16,7 +16,7 @@ document.onmouseup = function(e) {
 
 // second way - acces to db from ctrl c
 document.addEventListener("copy", function(e) {
-    const selection = window.getSelection().toString().trimEnd();
+    const selection = window.getSelection().toString().trimEnd().trimStart;
     if(!db[selection]) return;
     window.getSelection().empty();
     e.clipboardData.setData("text/plain", db[selection]);
@@ -30,7 +30,7 @@ document.addEventListener("keypress", function(e) {
     if(!auto) return
     switch (e.keyCode) {
         case 38: // key "&" for selection
-            const selection = window.getSelection().toString().trimEnd();
+            const selection = window.getSelection().toString().trimEnd().trimStart;
             if(!db[selection]) return;
             window.getSelection().empty();
             i=0
