@@ -1,6 +1,6 @@
 const db = {
-    "word1": "1",
-    "word2": "2",
+    "décoller": "take off",
+    "monter": "je veux monter",
     "word3": "3"
    }
 
@@ -16,7 +16,8 @@ document.onmouseup = function(e) {
 
 // second way - acces to db from ctrl c
 document.addEventListener("copy", function(e) {
-    const selection = window.getSelection().toString().trimEnd().trimStart;
+    const selection = window.getSelection().toString().trimEnd().trimStart();
+    console.log(selection)
     if(!db[selection]) return;
     window.getSelection().empty();
     e.clipboardData.setData("text/plain", db[selection]);
@@ -26,11 +27,13 @@ document.addEventListener("copy", function(e) {
 
 let selected = null, current = null, i = 0, j =0, auto = false
 document.addEventListener("keypress", function(e) {
+    console.log(e.keyCode)
     if(e.keyCode == 178) auto = !auto
+    console.log(auto)
     if(!auto) return
     switch (e.keyCode) {
         case 38: // key "&" for selection
-            const selection = window.getSelection().toString().trimEnd().trimStart;
+            const selection = window.getSelection().toString().trimEnd().trimStart();
             if(!db[selection]) return;
             window.getSelection().empty();
             i=0
