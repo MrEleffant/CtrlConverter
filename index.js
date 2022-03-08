@@ -32,7 +32,9 @@ async function getData(db) {
           resolve(xmlhttp.responseText)
         else if (xmlhttp.readyState == 4 && xmlhttp.status == 0) {
           resolve('CORS request did not succeed')
+          document.getElementById("submitBTN").style.background='#ce3333'
         } else
+          document.getElementById("submitBTN").style.background='#ce3333'
           console.log("Error loading page")
       };
       xmlhttp.send();
