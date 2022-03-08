@@ -1,8 +1,8 @@
 {
     "name": "CtrlConverter",
-    "description": "This is a Chrome extension that replace your copypaste from db",
-    "version": "3.0.1",
-    "manifest_version": 2,
+    "description": "Extension liée au serveur discord DbCreator, permettant de modifier le contenu du presse papier à partir d'une base de données.",
+    "version": "3.0.2",
+    "manifest_version": 3,
     "permissions": [
       "tabs",
       "activeTab",
@@ -12,7 +12,7 @@
       "16": "icon16.png",
       "48": "icon48.png",
       "128": "icon128.png" },
-    "browser_action": {
+    "action": {
       "default_title": "CtrlConverter",  
       "default_popup": "index.html"
     },
