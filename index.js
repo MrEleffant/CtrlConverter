@@ -1,8 +1,24 @@
+window.onload = function() {
+  chrome.storage.sync.get('status', function(data) {
+    document.getElementById("status").checked = data.status
+  });
+  
+  chrome.storage.sync.get('mode', function(data) {
+    let mod = ''
+    document.getElementById("mode").checked = data.mode
+    if(!data.mode) {
+      mod = 'Mode Ctrl C'
+    } else {
+      mod = 'Mode Auto'
+    }
+    document.getElementById("modeDesc").innerHTML = 'Mode d\'utilisation\n' + mod
+  });
+}
+
 document.getElementById("submitBTN").addEventListener("click", getDB);
 
 function getDB() {
   const dbCode = document.getElementById("login__password").value
-  console.log(dbCode)
   getData(dbCode)
 }
 
@@ -22,8 +38,25 @@ async function getData(db) {
       xmlhttp.send();
     });
     await jsonFile.then((value) => {
+        document.getElementById("submitBTN").style.background='#259b64'
         chrome.storage.sync.set({ db: JSON.parse(value) });
       return value
     })
     return
   }
+
+  document.getElementById("status").addEventListener("change", async function() {
+    chrome.storage.sync.set({ status: this.checked });
+  })
+
+  document.getElementById("mode").addEventListener("change", async function() {
+    chrome.storage.sync.set({ mode: this.checked });
+    let mod = ''
+    if(!this.checked) {
+      mod = 'Mode Ctrl C'
+    } else {
+      mod = 'Mode Auto'
+    }
+    document.getElementById("modeDesc").innerHTML = 'Mode d\'utilisation\n' + mod
+  })
+  

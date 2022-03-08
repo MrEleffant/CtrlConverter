@@ -3,8 +3,11 @@
   }
 
 
-  .tittle{
+  .tittle {
 	  color: white;
+  }
+  .param {
+	  position: absolute
   }
   
   /* config.css */
