@@ -1,15 +1,21 @@
 {
     "name": "CtrlConverter",
     "description": "This is a Chrome extension that replace your copypaste from db",
-    "version": "2.0.1",
-    "manifest_version": 3,
-    "background": {
-        "service_worker": "index.js"
-      },
+    "version": "3.0.0",
+    "manifest_version": 2,
     "permissions": [
       "tabs",
-      "activeTab"
+      "activeTab",
+      "storage"
     ],
+    "icons": { 
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png" },
+    "browser_action": {
+      "default_title": "CtrlConverter",  
+      "default_popup": "index.html"
+    },
     "content_scripts": [
       {
         "matches": ["<all_urls>"],

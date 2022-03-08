@@ -1,11 +1,10 @@
-const db = {
-    "décoller": "take off",
-    "monter": "je veux monter",
-    "word3": "3"
-   }
+
+
+let db = {}
 
 // first way
 document.onmouseup = function(e) {
+    return
     const content = window.getSelection().toString();
     if (db[content]) {
         // navigator.clipboard.writeText(db[content]); // past the db correspondance in the clipboard **https only**
@@ -15,9 +14,12 @@ document.onmouseup = function(e) {
 }
 
 // second way - acces to db from ctrl c
-document.addEventListener("copy", function(e) {
+document.addEventListener("copy", async function(e) {
+    await chrome.storage.sync.get('db', function(data) {
+        db = data.db
+    });
+    console.log(db)
     const selection = window.getSelection().toString().trimEnd().trimStart();
-    console.log(selection)
     if(!db[selection]) return;
     window.getSelection().empty();
     e.clipboardData.setData("text/plain", db[selection]);
@@ -26,13 +28,12 @@ document.addEventListener("copy", function(e) {
 
 
 let selected = null, current = null, i = 0, j =0, auto = false
-document.addEventListener("keypress", function(e) {
-    console.log(e.keyCode)
+document.addEventListener("keypress", async function(e) {
     if(e.keyCode == 178) auto = !auto
-    console.log(auto)
     if(!auto) return
     switch (e.keyCode) {
         case 38: // key "&" for selection
+            db = await actudb()
             const selection = window.getSelection().toString().trimEnd().trimStart();
             if(!db[selection]) return;
             window.getSelection().empty();
@@ -69,3 +70,17 @@ document.addEventListener("keypress", function(e) {
     }
     return;
 })
+
+async function actudb() {
+    let data = {}
+    try {
+        await chrome.storage.sync.get('db', async function(data) {
+            data = data.db
+            console.log(data.db)
+        });
+        return data
+    } catch (error) {
+        console.log(error)
+        return
+    }
+}
