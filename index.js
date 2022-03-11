@@ -41,7 +41,8 @@ async function getData(db) {
     });
     await jsonFile.then((value) => {
         document.getElementById("submitBTN").style.background='#259b64'
-        chrome.storage.sync.set({ db: JSON.parse(value) });
+        const data = JSON.parse(value)
+        chrome.storage.local.set({ db: data });
       return value
     })
     return

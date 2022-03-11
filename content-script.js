@@ -1,11 +1,12 @@
 
-document.addEventListener("copy", async function(e) {
+document.addEventListener("copy", function(e) {
     chrome.storage.sync.get('status', function(data) { 
         if(!data.status) return
         chrome.storage.sync.get('mode', function(data) { 
             if (data.mode) return
             e.preventDefault();
-           chrome.storage.sync.get('db', function(data) { 
+           chrome.storage.local.get('db', function(data) { 
+               console.log(data)
                const selection = window.getSelection().toString().trimEnd().trimStart();
                if(!data.db[selection]) return;
                navigator.clipboard.writeText(data.db[selection])
@@ -25,7 +26,7 @@ document.addEventListener("keypress", function(e) {
         chrome.storage.sync.get('mode', function(data) { 
            if (!data.mode) return
            e.preventDefault()
-           chrome.storage.sync.get('db', function(data) { 
+           chrome.storage.local.get('db', function(data) { 
                 let db = data.db
                 switch (e.keyCode) {
                     case 38: // key "&" for selection
