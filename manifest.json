@@ -1,7 +1,7 @@
 {
     "name": "CtrlConverter",
     "description": "Extension liée au serveur discord DbCreator, permettant de modifier le contenu du presse papier à partir d'une base de données.",
-    "version": "3.0.3",
+    "version": "3.0.4",
     "manifest_version": 3,
     "permissions": [
       "storage"
